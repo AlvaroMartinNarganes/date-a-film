@@ -7,13 +7,15 @@ import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
