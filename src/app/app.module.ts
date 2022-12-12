@@ -8,6 +8,7 @@ import { CardComponent } from './components/shared/card/card.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ModalComponent } from './components/modal/modal.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ModalComponent } from './components/modal/modal.component';
     HomeComponent,
     CardComponent,
     NavbarComponent,
-    ModalComponent
+    ModalComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

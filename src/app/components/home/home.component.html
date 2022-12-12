@@ -1,9 +1,9 @@
-<div class="flex flex-col h-screen" *ngIf="film">
+<div class="flex flex-col h-screen" *ngIf="library">
   <div class="flex-1 flex flex-col justify-between">
-    <app-card [film]="film"></app-card>
+    <app-card [film]="library[currentIndex]"></app-card>
     <div class=" grid grid-cols-2 h-1/6 lg:h-20">
-      <button class=" bg-red-600 font-bold ">X</button>
-      <button class=" bg-green-600  font-bold">V</button>
+      <button class=" bg-red-600 font-bold" (click)="nextFilm()">X</button>
+      <button class=" bg-green-600  font-bold" (click)="saveFilm(library[currentIndex])">V</button>
     </div>
   </div>
   <footer>

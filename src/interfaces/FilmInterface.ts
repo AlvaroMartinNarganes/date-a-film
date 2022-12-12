@@ -1,7 +1,7 @@
 export interface FilmInterface {
-  film_name: string,
-  poster_path: string
-  vote_average: number
-  release_date: string
+  filmName: string,
+  posterPath: string
+  voteAverage: number
+  releaseDate: string
   overview: string
 }

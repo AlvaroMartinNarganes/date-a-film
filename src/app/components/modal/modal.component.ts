@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilmInterface} from "../../../interfaces/FilmInterface";
 
 @Component({
@@ -8,11 +8,16 @@ import {FilmInterface} from "../../../interfaces/FilmInterface";
 })
 export class ModalComponent implements OnInit {
   @Input() film!: FilmInterface;
+  @Output() closeModal= new EventEmitter<void>();
 
   constructor() {
+
   }
 
   ngOnInit(): void {
   }
 
+  onCloseModal(){
+    this.closeModal.emit()
+  }
 }

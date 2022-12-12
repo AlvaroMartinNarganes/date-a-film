@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FilmInterface} from "../../../../interfaces/FilmInterface";
+import { Component, Input, OnInit } from '@angular/core';
+import { FilmInterface } from '../../../../interfaces/FilmInterface';
 
 @Component({
   selector: 'app-card',
@@ -8,21 +8,26 @@ import {FilmInterface} from "../../../../interfaces/FilmInterface";
 })
 export class CardComponent implements OnInit {
 
-  @Input() film!: FilmInterface
-  fullStar!: number[];
-  emptyStar!: number[];
+  // Input property for the film to display in the card
+  @Input() film!: FilmInterface;
 
+  // Flag to show/hide the modal
+  showModal: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    //TO-DO
-    //Take the rating>get ⭐ with the porcent> fill ⭐
-    this.fullStar = Array(4).fill(4)
-    this.emptyStar = Array(1).fill(1)
+    // Perform initialization logic
   }
 
-  getRatio = (vote: number) => {
+  // Method to open the modal
+  openModal() {
+    this.showModal = true;
   }
+
+  // Method to close the modal
+  closeModal() {
+    this.showModal = false;
+  }
+
 }
