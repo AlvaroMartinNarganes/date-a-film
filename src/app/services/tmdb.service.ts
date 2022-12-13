@@ -7,6 +7,8 @@ import {FilmInterface} from '../../interfaces/FilmInterface';
     providedIn: 'root'
 })
 export class TmdbService {
+    private APIKEY = '0eba849fdaf3f92d90d4d94b2db09657';
+
     constructor(private http: HttpClient) {
     }
 
@@ -31,7 +33,7 @@ export class TmdbService {
         const url = `https://api.themoviedb.org/3/discover/movie?api_key=0eba849fdaf3f92d90d4d94b2db09657&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
         return this.http.get(url).pipe(
             map((res: any) => {
-                //Get the films, I need and return
+                //Get the films I need and return
                 const library: FilmInterface[] = [];
                 for (const resFilm of res['results']) {
                     const film: FilmInterface = {
@@ -50,8 +52,23 @@ export class TmdbService {
 
 
     findFilm(name: string) {
-        //replace white space in the url
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=0eba849fdaf3f92d90d4d94b2db09657&language=es-ES&query=Pulp%20Fiction&page=1&include_adult=true`;
-        return this.http.get(url);
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=0eba849fdaf3f92d90d4d94b2db09657&query=${name}&language=es`;
+        return this.http.get(url).pipe(
+            map((res: any) => {
+                //Get the films I need and return
+                const library: FilmInterface[] = [];
+                for (const resFilm of res['results']) {
+                    const film: FilmInterface = {
+                        filmName: resFilm.original_title,
+                        posterPath: `https://image.tmdb.org/t/p/original/${resFilm.poster_path}`,
+                        voteAverage: resFilm.vote_average,
+                        releaseDate: resFilm.release_date,
+                        overview: resFilm.overview
+                    };
+                    library.push(film);
+                }
+                return library;
+            })
+        );
     }
 }

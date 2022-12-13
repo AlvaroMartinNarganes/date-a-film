@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ModalComponent } from './components/modal/modal.component';
 import { SearchComponent } from './components/search/search.component';
+import { NoimagePipe } from './pipes/noimage.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SearchComponent } from './components/search/search.component';
     CardComponent,
     NavbarComponent,
     ModalComponent,
-    SearchComponent
+    SearchComponent,
+    NoimagePipe
   ],
   imports: [
     BrowserModule,
