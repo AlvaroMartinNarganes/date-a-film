@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TmdbService } from '../../services/tmdb.service';
 import { FilmInterface } from '../../../interfaces/FilmInterface';
 import { debounceTime } from 'rxjs/operators';
+import {FirebaseService} from '../../services/firebase.service';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,7 @@ export class SearchComponent implements OnInit {
   public searchResults?: FilmInterface[];
 
   // Inject the TmdbService into the component
-  constructor(public tmdb: TmdbService) {}
+  constructor(public tmdb: TmdbService,public firebaseService:FirebaseService) {}
 
   // This method will be called when the component is initialized
   ngOnInit(): void {}
@@ -38,6 +39,7 @@ export class SearchComponent implements OnInit {
   }
 
   addFilm(film: FilmInterface){
-    console.log(film)
+    this.firebaseService.saveFilm(film);
+    alert("Película añadida a tu biblioteca")
   }
 }
