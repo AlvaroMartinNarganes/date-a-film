@@ -13,6 +13,8 @@ import { NoimagePipe } from './pipes/noimage.pipe';
 import { LibraryComponent } from './components/library/library.component';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
+import { LoginComponent } from './components/login/login.component';
+import {FormsModule} from '@angular/forms';
 
 
 const firebaseConfig = {
@@ -34,15 +36,17 @@ const firebaseConfig = {
     ModalComponent,
     SearchComponent,
     NoimagePipe,
-    LibraryComponent
+    LibraryComponent,
+    LoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-      AngularFireModule.initializeApp(firebaseConfig),
-      AngularFireDatabaseModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireDatabaseModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

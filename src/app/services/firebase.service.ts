@@ -7,7 +7,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 })
 export class FirebaseService {
     // Property to store the film library
-    private filmLibrary: FilmInterface[] = [];
+    private filmLibrary: FilmInterface[] = []; //No se usa esto para nada, mañana lo borro
 
     // Inject any necessary dependencies in the constructor
     constructor(public db: AngularFirestore) {
@@ -39,5 +39,10 @@ export class FirebaseService {
 
     deleteFilm(film: FilmInterface) {
         this.db.collection('films').doc(film.filmName).delete().then(r => r);
+    }
+
+    //login
+    login(email:string, pass:string){
+
     }
 }
