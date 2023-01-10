@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FilmInterface} from '../../../interfaces/FilmInterface';
 import {FirebaseService} from '../../services/firebase.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-library',
@@ -9,15 +10,21 @@ import {FirebaseService} from '../../services/firebase.service';
 })
 export class LibraryComponent implements OnInit {
   public library?:FilmInterface[];
-  constructor(public firebaseService:FirebaseService) { }
+  private uid=sessionStorage.getItem("uid")
+
+  constructor(public firebaseService:FirebaseService,private router:Router) { }
 
   ngOnInit(): void {
-    this.firebaseService.getFilms().then(res => this.library=res)
+    if(this.uid) {
+      this.firebaseService.getFilms(this.uid).then(res => this.library = res)
+    }else{
+      this.router.navigate(["/login"])
+    }
   }
 
   watched(film:FilmInterface){
     console.log(`Has visto ${film.filmName}`)
-    this.firebaseService.saveFilm(film)
+    //this.firebaseService.saveFilm(film)
   }
 
   delete(film:FilmInterface){

@@ -15,6 +15,7 @@ import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 const firebaseConfig = {
@@ -37,7 +38,8 @@ const firebaseConfig = {
     SearchComponent,
     NoimagePipe,
     LibraryComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
     imports: [
         BrowserModule,

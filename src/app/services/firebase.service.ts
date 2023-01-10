@@ -7,7 +7,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 })
 export class FirebaseService {
     // Property to store the film library
-    private filmLibrary: FilmInterface[] = []; //No se usa esto para nada, mañana lo borro
+    private filmLibrary: FilmInterface[] = [];
 
     // Inject any necessary dependencies in the constructor
     constructor(public db: AngularFirestore) {
@@ -15,9 +15,15 @@ export class FirebaseService {
     }
 
     // Method to return the film library
-    getFilms() {
-        return new Promise<any>((resolve) => {
+    getFilms(uid:string) {
+/*        return new Promise<any>((resolve) => {
             this.db.collection('films').valueChanges().subscribe(users => resolve(users));
+        });*/
+        return new Promise<any>((resolve) => {
+            this.db.collection('films').valueChanges().subscribe(films => {
+                const filmsByUser=films.filter((i:any)=>i["uid"]==uid)
+                resolve(filmsByUser)
+            });
         });
     }
 
@@ -33,11 +39,14 @@ export class FirebaseService {
     }
 
     // Method to save a film to the film library in localStorage
-    saveFilm(film: FilmInterface) {
+    saveFilm(film: FilmInterface,uid:string) {
+        //Get the uid
+        film.uid=uid;
         this.db.collection('films').doc(film.filmName).set(film).then(r => r);
     }
 
     deleteFilm(film: FilmInterface) {
+        //Change this, delete the film filter by user uid
         this.db.collection('films').doc(film.filmName).delete().then(r => r);
     }
 
