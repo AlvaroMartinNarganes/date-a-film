@@ -13,7 +13,7 @@ export class TmdbService {
     }
 
     getFilm(id: number): Observable<any> {
-        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=0eba849fdaf3f92d90d4d94b2db09657&language=es-ES`;
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${this.APIKEY}&language=es-ES`;
         return this.http.get(url).pipe(
             map((response: any) => {
                 const film: FilmInterface = {
@@ -30,7 +30,7 @@ export class TmdbService {
 
 
     getDiscoverList() {
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=0eba849fdaf3f92d90d4d94b2db09657&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${this.APIKEY}&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
         return this.http.get(url).pipe(
             map((res: any) => {
                 //Get the films I need and return
@@ -41,7 +41,7 @@ export class TmdbService {
                         posterPath: `https://image.tmdb.org/t/p/original/${resFilm.poster_path}`,
                         voteAverage: resFilm.vote_average,
                         releaseDate: resFilm.release_date,
-                        overview: resFilm.overview
+                        overview: resFilm.overview,
                     };
                     library.push(film);
                 }
@@ -52,7 +52,7 @@ export class TmdbService {
 
 
     findFilm(name: string) {
-        const url = `https://api.themoviedb.org/3/search/movie?api_key=0eba849fdaf3f92d90d4d94b2db09657&query=${name}&language=es`;
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${this.APIKEY}&query=${name}&language=es`;
         return this.http.get(url).pipe(
             map((res: any) => {
                 //Get the films I need and return

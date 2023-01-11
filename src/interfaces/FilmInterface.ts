@@ -5,4 +5,5 @@ export interface FilmInterface {
   voteAverage: number
   releaseDate: string
   overview: string
+  watched?:boolean
 }

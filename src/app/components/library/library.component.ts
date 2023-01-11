@@ -23,14 +23,14 @@ export class LibraryComponent implements OnInit {
   }
 
   watched(film:FilmInterface){
-    console.log(`Has visto ${film.filmName}`)
-    //this.firebaseService.saveFilm(film)
+    //coger el uid, la película y cambiar el checked a true
   }
 
   delete(film:FilmInterface){
     //First delete from de local library
     this.library? this.library =this.library.filter((item: FilmInterface) => item.filmName !== film.filmName):console.log("Ya está vacio");
     //Then, update the bd
-    this.firebaseService.deleteFilm(film)
+    // @ts-ignore
+    this.firebaseService.deleteFilm(film,this.uid)
   }
 }

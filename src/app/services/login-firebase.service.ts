@@ -18,8 +18,11 @@ export class LoginFirebaseService {
   }
 
   //Sign up
-  signUp(email:string,pass:string){
-    return this.afAuth.createUserWithEmailAndPassword(email,pass).then(res=>res).catch(err=>err)
+  async signUp(email:string,pass:string,userName:string){
+    return this.afAuth.createUserWithEmailAndPassword(email,pass).then(res=>{
+      res.user?.updateProfile({displayName:userName})
+        res.user?.sendEmailVerification()
+    }).catch(err=>err)
   }
 
 }

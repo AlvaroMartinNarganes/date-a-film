@@ -38,20 +38,16 @@ export class FirebaseService {
         });
     }
 
-    // Method to save a film to the film library in localStorage
+    // Method to save a film to the film library
     saveFilm(film: FilmInterface,uid:string) {
         //Get the uid
         film.uid=uid;
-        this.db.collection('films').doc(film.filmName).set(film).then(r => r);
+        //Before save, check if the film is in the library
+        this.db.collection('films').doc(film.filmName+uid).set(film).then(r => r);
     }
 
-    deleteFilm(film: FilmInterface) {
-        //Change this, delete the film filter by user uid
-        this.db.collection('films').doc(film.filmName).delete().then(r => r);
+    deleteFilm(film: FilmInterface, uid:string) {
+        this.db.collection('films').doc(film.filmName+uid).delete().then(r => r);
     }
 
-    //login
-    login(email:string, pass:string){
-
-    }
 }
