@@ -24,6 +24,8 @@ export class LibraryComponent implements OnInit {
 
   watched(film:FilmInterface){
     //coger el uid, la película y cambiar el checked a true
+    // @ts-ignore
+    this.firebaseService.watchedFilm(film,this.uid)
   }
 
   delete(film:FilmInterface){
