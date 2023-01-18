@@ -16,12 +16,10 @@ export class FirebaseService {
 
     // Method to return the film library
     getFilms(uid: string) {
-        /*        return new Promise<any>((resolve) => {
-                    this.db.collection('films').valueChanges().subscribe(users => resolve(users));
-                });*/
         return new Promise<any>((resolve) => {
             this.db.collection('films').valueChanges().subscribe(films => {
                 const filmsByUser = films.filter((i: any) => i['uid'] == uid);
+                console.log(filmsByUser);
                 resolve(filmsByUser);
             });
         });
@@ -54,6 +52,6 @@ export class FirebaseService {
 
     //Method to set a film to watched
     watchedFilm(film: FilmInterface, uid: string) {
-        this.db.collection('films').doc(film.filmName + uid).update({watched:true}).then(res=>res)
+        this.db.collection('films').doc(film.filmName + uid).update({watched: true}).then(res => res);
     }
 }
