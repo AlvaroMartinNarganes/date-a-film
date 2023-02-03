@@ -58,12 +58,6 @@ export class UserComponent implements OnInit {
                     data: [this.notWached, this.watched],
                     backgroundColor: ['#3182ce', '#98FB98']
                 }]
-            },
-            options: {
-                events: ['click'],
-                onClick(event: ChartEvent, elements: ActiveElement[], chart: Chart) {
-                    console.log(event)
-                }
             }
         });
     }

@@ -19,7 +19,6 @@ export class FirebaseService {
         return new Promise<any>((resolve) => {
             this.db.collection('films').valueChanges().subscribe(films => {
                 const filmsByUser = films.filter((i: any) => i['uid'] == uid);
-                console.log(filmsByUser);
                 resolve(filmsByUser);
             });
         });

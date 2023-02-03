@@ -36,7 +36,6 @@ export class HomeComponent implements OnInit {
     // Save the current film
     saveFilm(film: FilmInterface) {
         if(this.uid){
-            console.log('Save this film');
             this.firebaseService.saveFilm(film,this.uid);
             this.currentIndex = (this.currentIndex + 1) % this.library.length;
         }else{

@@ -33,7 +33,6 @@ export class LoginFirebaseService {
         //User.displayName, User.email,User.photoUrl
         return new Promise(resolve => {
             this.afAuth.authState.subscribe((user:any) => {
-                console.log(user);
                 const userFilter: UserInterface = {
                     name: user.displayName,
                     email: user.email,
