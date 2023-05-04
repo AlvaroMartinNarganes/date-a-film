@@ -18,7 +18,8 @@ export class LibraryComponent implements OnInit {
     ngOnInit(): void {
         if (this.uid) {
             this.firebaseService.getFilms(this.uid).then(res => {
-                this.library = res.filter((film: FilmInterface) => !film.watched);
+                //this.library = res.filter((film: FilmInterface) => !film.watched);
+              this.library=res
             });
         } else {
             this.router.navigate(['/login']);
@@ -26,7 +27,7 @@ export class LibraryComponent implements OnInit {
     }
 
     watched(film: FilmInterface) {
-        //coger el uid, la película y cambiar el checked a true
+        //coger el uid, la película y cambiar el checked a true cambiar todo esto
         // @ts-ignore
         this.firebaseService.watchedFilm(film, this.uid);
         // @ts-ignore
