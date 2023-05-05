@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {FilmInterface} from '../../interfaces/FilmInterface';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {log10} from "chart.js/helpers";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import firebase from "firebase/compat";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
@@ -11,14 +11,14 @@ import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 })
 export class FirebaseService {
   // Property to store the film library
-  private filmLibrary: FilmInterface[] = [];
+  //private filmLibrary: FilmInterface[] = [];
 
   // Inject any necessary dependencies in the constructor
   constructor(public db: AngularFirestore) {
-    this.getLibrary();
+    //this.getLibrary();
   }
 
-  // Method to return the film library
+  // Method to return not watched films
   getFilms(uid_user: string) {
     var films: FilmInterface[]=[];
     return new Promise<any>((resolve) => {
@@ -42,15 +42,42 @@ export class FirebaseService {
     });
   }
 
+  getWatchedFilms(uid_user:string){
+    var films: FilmInterface[]=[];
+    return new Promise<any>((resolve) => {
+      this.db.collection('library').valueChanges().subscribe(async library => {
+        //Get user films
+        const userFilms = library.filter((i: any) => i['uid_user'] == uid_user && i['watched']).map((item: any) => item.uid_film);
+        //Get films
+        for (const userFilm of userFilms) {
+          const a = await this.db.collection('films').doc(userFilm + '')
+          // @ts-ignore
+          const filmDoc: Observable<DocumentSnapshot> = a.get();
+          filmDoc.subscribe((filmDoc: { exists: any; data: () => any; }) => {
+            if (filmDoc.exists) {
+              const filmData = filmDoc.data();
+              films.push(filmData);
+            }
+          });
+        }
+        resolve(films);
+      });
+    });
+  }
 
   // Method to retrieve the film library from localStorage
-  getLibrary() {
+  getLibrary(uid_user:string) {
+    var subject = new Subject<string>();
     // Get the film library from Firebase
-    this.db.collection('films').valueChanges().subscribe((data: any) => {
+    this.db.collection("library",ref=>ref.where("uid_user", "==", uid_user)).get().subscribe((data: any) => {
       // Update the film library property with the data from Firebase
-      this.filmLibrary = data;
-
-    });
+      const docSnapshots = data.docs;
+      subject.next(docSnapshots);
+      /*for (const docSnapshot of docSnapshots) {
+        console.log(docSnapshot.data())
+      }*/
+    })
+    return subject.asObservable();
   }
 
   // Method to save a film to the film library
@@ -79,8 +106,6 @@ export class FirebaseService {
 
   //Method to delete a film from the list
   deleteFilm(film: FilmInterface, uid: string) {
-    //Ya no es tan facil, ir a libreria y eliminar la relación
-
       this.db.collection("library",ref=>ref.where("uid_film", "==", film.uid)
         .where("uid_user", "==", uid)).get().subscribe((data: any) => {
         // Update the film library property with the data from Firebase
@@ -89,11 +114,17 @@ export class FirebaseService {
         this.db.collection('library').doc(idFilm).delete().then(r => r);
       })
 
-    //this.db.collection('films').doc(film.filmName + uid).delete().then(r => r);
   }
 
   //Method to set a film to watched
   watchedFilm(film: FilmInterface, uid: string) {
-    this.db.collection('films').doc(film.filmName + uid).update({watched: true}).then(res => res);
+    this.db.collection("library",ref=>ref.where("uid_film", "==", film.uid)
+      .where("uid_user", "==", uid)).get().subscribe((data: any) => {
+      // Update the film library property with the data from Firebase
+      const docSnapshots = data.docs;
+      const idFilm=docSnapshots[0].id;
+      console.log(idFilm)
+      this.db.collection('library').doc(idFilm).update({watched:true}).then(res=>res);
+    })
   }
 }

@@ -1,34 +1,44 @@
 <header>
-    <div class="relative overflow-hidden bg-no-repeat bg-cover" style="
+  <div class="relative overflow-hidden bg-no-repeat bg-cover" style="
     background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/146.webp');
     height: 350px;
     background-position: center;
   ">
-        <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
-             style="background-color: rgba(0, 0, 0, 0.75)">
-            <div class="flex justify-center items-center h-full">
-                <div class="text-center text-white px-6 md:px-12">
-                    <h1 class="text-5xl font-bold mt-0 mb-6">Usuario</h1>
-                </div>
-            </div>
+    <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
+         style="background-color: rgba(0, 0, 0, 0.75)">
+      <div class="flex justify-center items-center h-full">
+        <div class="text-center text-white px-6 md:px-12">
+          <h1 class="text-5xl font-bold mt-0 mb-6">Usuario</h1>
         </div>
+      </div>
     </div>
+  </div>
 </header>
 <!--User Info-->
 <div class="container mx-auto px-4">
-    <div class="flex flex-wrap">
-        <div class="w-full md:w-1/2 p-4">
-            <img src="https://picsum.photos/200/300" class="w-32 h-32 rounded-full mb-4">
-            <p class="text-xl font-medium mb-2 text-3xl">{{userName}}</p>
-            <p class="text-md mb-2 text-xl">{{email}}</p>
-        </div>
-        <div class="w-full md:w-1/2 p-4">
-            <p class="text-2xl">Porcentaje completado de tu biblioteca</p>
-            <div class="w-full h-96">
-                <canvas id="MyChart" >{{ pieChart }}</canvas>
-            </div>
-        </div>
+  <div class="flex flex-wrap">
+    <div class="w-full md:w-1/2 p-4">
+      <img src="https://picsum.photos/200/300" class="w-32 h-32 rounded-full mb-4">
+      <p class="text-xl font-medium mb-2 text-3xl">{{userName}}</p>
+      <p class="text-md mb-2 text-xl">{{email}}</p>
     </div>
+    <div class="w-full md:w-1/2 p-4">
+      <p class="text-2xl">Porcentaje completado de tu biblioteca</p>
+      <div class="w-full h-96">
+        <canvas id="MyChart">{{ pieChart }}</canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Watched films , complete this div-->
+<div class="container mx-auto px-4 mt-8 mb-8">
+  <h2 class="text-5xl text-center font-bold mb-4">Películas vistas</h2>
+  <div class="grid  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div *ngFor="let film of library">
+      <app-card [film]="film"></app-card>
+    </div>
+  </div>
 </div>
 <!--Navbar -->
 <app-navbar></app-navbar>

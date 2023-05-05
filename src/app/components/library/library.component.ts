@@ -32,7 +32,7 @@ export class LibraryComponent implements OnInit {
         this.firebaseService.watchedFilm(film, this.uid);
         // @ts-ignore
         this.firebaseService.getFilms(this.uid).then(res => {
-            this.library = res.filter((film: FilmInterface) => !film.watched);
+            this.library = res
         });
     }
 
