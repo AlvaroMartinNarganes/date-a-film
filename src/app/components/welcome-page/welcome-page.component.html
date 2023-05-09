@@ -1,0 +1,35 @@
+<main class="flex flex-col lg:flex-row ">
+  <div class="lg:w-1/2 flex flex-col items-center justify-center px-6">
+    <h1 class="text-4xl font-bold mb-6">Date a Film</h1>
+    <p class="text-xl text-center mb-8">¡Disfruta de la magia del cine y déjate sorprender por las historias cautivadoras que te esperan! ¡Bienvenido a nuestra comunidad de amantes del cine de todo el mundo!</p>
+    <p class="text-xl text-center mb-8">Nuestra aplicación está diseñada para brindarte una experiencia cinematográfica única y enriquecedora. ¿Te encanta descubrir joyas cinematográficas desconocidas o simplemente quieres ampliar tus horizontes más allá de las películas más populares de Hollywood? ¡Estás en el lugar correcto!</p>
+    <p class="text-xl text-center mb-8">En esta plataforma, podrás buscar y explorar una amplia selección de películas de todos los rincones del mundo. Podrás acceder a información detallada sobre cada película que te sumergirá en su trama.</p>
+    <p class="text-xl text-center mb-8">Pero eso no es todo. Nuestra aplicación también te brinda la oportunidad de crear tu propia librería personal de películas. Podrás marcar las películas que has visto y las que te gustaría ver en el futuro. Esta función te permitirá llevar un registro completo de tus preferencias y descubrimientos cinematográficos, ¡para que nunca pierdas de vista las películas que deseas ver!</p>
+    <p class="text-xl text-center mb-8">Así que, prepárate para explorar un mundo cinematográfico global. Desde dramas conmovedores hasta emocionantes películas de acción, desde aclamadas producciones independientes hasta tesoros escondidos del cine clásico, nuestra aplicación está aquí para satisfacer todos tus gustos cinematográficos.</p>
+    <p class="text-xl text-center mb-8">¡Disfruta de la magia del cine y déjate sorprender por las historias cautivadoras que te esperan! ¡Bienvenido a nuestra comunidad de amantes del cine de todo el mundo!</p>
+    <div class="flex flex-col justify-center items-center gap-4">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Iniciar sesión
+      </button>
+      <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+        Registrarse
+      </button>
+    </div>
+  </div>
+  <div class="lg:w-1/2 flex flex-col items-center justify-center px-6 ">
+    <div class="flex flex-col items-center  h-full">
+
+      <h1 class="text-4xl font-bold mb-6">Top estrenos</h1>
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-5">
+        <div class="border rounded overflow-hidden" *ngFor="let film of library">
+          <img [src]="film.posterPath"  alt="Film 1" class="w-full h-auto">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="bg-black text-center py-4 mt-8">
+  <p class="text-gray-300">© Date a film. Proyecto final 2023</p>
+</footer>

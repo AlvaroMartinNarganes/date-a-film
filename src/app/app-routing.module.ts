@@ -6,6 +6,8 @@ import {LibraryComponent} from './components/library/library.component';
 import {LoginComponent} from './components/login/login.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {UserComponent} from './components/user/user.component';
+import {SuggestionsComponent} from "./components/suggestions/suggestions.component";
+import {WelcomePageComponent} from "./components/welcome-page/welcome-page.component";
 
 const routes: Routes = [{path: 'home', component: HomeComponent},
     {path: 'library', component: LibraryComponent},
@@ -13,7 +15,9 @@ const routes: Routes = [{path: 'home', component: HomeComponent},
     {path: 'user', component: UserComponent},
     {path: 'login', component: LoginComponent},
     {path: 'signUp', component: SignUpComponent},
-    {path: '**', component: LoginComponent}];
+    {path: 'suggestions', component: SuggestionsComponent},
+    {path: 'welcome', component: WelcomePageComponent},
+    {path: '**', component: WelcomePageComponent}];
 
 
 @NgModule({

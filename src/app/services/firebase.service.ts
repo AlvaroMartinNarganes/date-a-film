@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FilmInterface} from '../../interfaces/FilmInterface';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {log10} from "chart.js/helpers";
 import {Observable, Subject} from "rxjs";
 import firebase from "firebase/compat";
 import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
@@ -123,8 +122,21 @@ export class FirebaseService {
       // Update the film library property with the data from Firebase
       const docSnapshots = data.docs;
       const idFilm=docSnapshots[0].id;
-      console.log(idFilm)
       this.db.collection('library').doc(idFilm).update({watched:true}).then(res=>res);
     })
+  }
+
+  //Method to save a new suggestion
+  sendSuggestion(title:string,suggestion:string){
+    let suggestionObject = {
+      'title': title,
+      'suggestion': suggestion
+    }
+
+    this.db.collection('suggestions').doc().set(suggestionObject).then(res => {
+      console.log(res)
+      return res
+    });
+
   }
 }

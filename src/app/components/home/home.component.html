@@ -23,13 +23,13 @@
     <div class="flex justify-center gap-x-80 pt-10">
       <!--      <button class=" bg-red-600 font-bold" (click)="nextFilm()">X</button>
             <button class=" bg-green-600  font-bold" (click)="saveFilm(library[currentIndex])">V</button>-->
-      <button class=" rounded-full bg-red-500 hover:bg-red-600">
+      <button class=" rounded-full bg-red-500 hover:bg-red-600" (click)="nextFilm()">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24"
              stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <button class="rounded-full bg-green-500 hover:bg-green-600">
+      <button class="rounded-full bg-green-500 hover:bg-green-600" (click)="saveFilm(library[currentIndex])">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24"
              stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>

@@ -1,0 +1,36 @@
+<header class="mb-2">
+  <!-- Background image -->
+  <div class="relative overflow-hidden bg-no-repeat bg-cover" style="
+    background-position: 50%;
+    background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/146.webp');
+    height: 350px;
+  ">
+    <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
+         style="background-color: rgba(0, 0, 0, 0.75)">
+      <div class="flex justify-center items-center h-full">
+        <div class="text-center text-white px-6 md:px-12">
+          <h1 class="text-5xl font-bold mt-0 mb-6">Sugerencias</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+  <app-navbar class=" bg-gray-900 "></app-navbar>
+</header>
+<main>
+  <div class="container mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4">Formulario de sugerencias de mejora</h2>
+    <p class="mb-4">¡Hola! Gracias por visitar nuestra página. Aquí puedes dejarnos tus sugerencias y comentarios para
+      ayudarnos a mejorar tu experiencia.</p>
+    <form (ngSubmit)="sendSuggestion()">
+      <label for="title" class="block mb-2">Título:</label>
+      <input type="text" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" id="title" name="title" required class="w-full p-2 border border-gray-300 rounded-md">
+
+      <label for="suggestion" class="block mb-2">Sugerencia:</label>
+      <textarea [(ngModel)]="suggestion" [ngModelOptions]="{standalone: true}" id="suggestion" name="suggestion" rows="6" required
+                class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+
+      <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded">Enviar sugerencia</button>
+    </form>
+  </div>
+</main>

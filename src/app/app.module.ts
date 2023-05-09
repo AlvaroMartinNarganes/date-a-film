@@ -17,6 +17,10 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule} from '@angular/forms';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UserComponent } from './components/user/user.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+
+
 
 
 const firebaseConfig = {
@@ -41,7 +45,10 @@ const firebaseConfig = {
     LibraryComponent,
     LoginComponent,
     SignUpComponent,
-    UserComponent
+    UserComponent,
+    SuggestionsComponent,
+    WelcomePageComponent,
+
   ],
     imports: [
         BrowserModule,
