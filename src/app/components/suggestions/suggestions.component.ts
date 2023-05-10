@@ -17,7 +17,9 @@ export class SuggestionsComponent implements OnInit {
 
   sendSuggestion(){
     const res=this._firebaseService.sendSuggestion(this.title,this.suggestion)
-    console.log(res)
+    alert("Sugerencia enviada correctamente")
+    this.title="";
+    this.suggestion="";
   }
 
 }
